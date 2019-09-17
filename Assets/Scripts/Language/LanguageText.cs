@@ -3,10 +3,8 @@ using TMPro;
 using RTLTMPro;
 
 
-public class LocalizedText : TextComponent
+public class LanguageText : TextComponent
 {
-    private TMP_FontAsset _latinFont;
-
     private TextAlignmentOptions _latinAlignment;
 
     [SerializeField]
@@ -27,7 +25,6 @@ public class LocalizedText : TextComponent
         _initialized = true;
         if (TextPro)
         {
-            _latinFont = TextPro.font;
             _latinAlignment = TextPro.alignment;
         }
         if (_multiLanguageText != null)

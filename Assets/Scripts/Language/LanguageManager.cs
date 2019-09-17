@@ -17,6 +17,8 @@ public class LanguageManager : MonoBehaviour
     public event Action<Language> OnLanguageChange;
     private Language _defaultLanguage;
 
+    public int LanguageIndex;
+
     private void Awake()
     {
         Instance = this;
@@ -24,9 +26,26 @@ public class LanguageManager : MonoBehaviour
             Resources.LoadAll<Language>("Data/Localization/Languages"));
         AlphabetFontMatrix = Resources.Load<AlphabetFontMatrix>(
             "Data/Localization/AlphabetFontMatrix");
-        
-        _defaultLanguage = _languages[1];
-        SelectedLanguage = _defaultLanguage;
+
+
+
+
+
+        switch (Application.systemLanguage)
+        {
+            case SystemLanguage.Turkish:
+                _defaultLanguage = _languages[2];
+                LanguageIndex = 2;
+                break;
+            case SystemLanguage.Arabic:
+                _defaultLanguage = _languages[0];
+                LanguageIndex = 0;
+                break;
+            default:
+                _defaultLanguage = _languages[1];
+                LanguageIndex = 1;
+                break;
+        }
 
     }
 
@@ -35,6 +54,9 @@ public class LanguageManager : MonoBehaviour
         SelectedLanguage = _languages
             [(_languages.IndexOf(SelectedLanguage) + 1) % _languages.Count];
         OnLanguageChange.Invoke(SelectedLanguage);
+
+        LanguageIndex = ( _languages.IndexOf(SelectedLanguage) + 1 ) % _languages.Count;
+
     }
 
     public static string GetText(LanguageDependentText text, params object[] args)
