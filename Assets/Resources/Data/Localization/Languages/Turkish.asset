@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0272bc3580cb837428cd89445f783adb, type: 3}
   m_Name: Turkish
   m_EditorClassIdentifier: 
-  Alphabet: {fileID: 0}
-  Name: 
-  Icon: {fileID: 0}
-  systemLanguageType: 0
+  Alphabet: {fileID: 11400000, guid: 01898916dc90bbb4fad920679ff378e3, type: 2}
+  Name: Turkish
+  Icon: {fileID: 21300000, guid: fbcc348ae10ca1e40aa86fe8d265deab, type: 3}
+  systemLanguageType: 37

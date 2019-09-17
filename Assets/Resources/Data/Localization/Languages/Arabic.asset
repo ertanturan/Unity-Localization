@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0272bc3580cb837428cd89445f783adb, type: 3}
   m_Name: Arabic
   m_EditorClassIdentifier: 
-  Alphabet: {fileID: 0}
-  Name: 
-  Icon: {fileID: 0}
-  systemLanguageType: 0
+  Alphabet: {fileID: 11400000, guid: c6480a0a0af344041b0d39b43411a51a, type: 2}
+  Name: "\u0651\u0629\u064A\u064E\u0628\u0631\u064E\u0639\u0644\u0627"
+  Icon: {fileID: 21300000, guid: b5b8fd12b775f2141a6c319e3ae8fd3e, type: 3}
+  systemLanguageType: 1
