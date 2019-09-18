@@ -18,8 +18,11 @@ public class LanguageButton : ButtonComponent
     {
         base.Awake();
         ToggleSprite();
+    }
 
-
+    private void Start()
+    {
+        ToggleSprite();
     }
 
     public override void OnButtonClick()
@@ -28,15 +31,15 @@ public class LanguageButton : ButtonComponent
         //_languageManager.ToggleLanguage();
 
         ToggleSprite();
-
+        _languageManager.ChangeLanguage();
         Debug.Log("Language Change Button Clicked .. ");
 
     }
 
     private void ToggleSprite()
     {
-        _button.image.sprite = _langSprites[_languageManager.LanguageIndex];
+        //_button.image.sprite = _langSprites[_languageManager.LanguageIndex];
     }
 
- 
+
 }

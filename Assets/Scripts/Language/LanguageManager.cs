@@ -8,54 +8,40 @@ public class LanguageManager : MonoBehaviour
 
     public static LanguageManager Instance;
 
-    private List<Language> _languages;
+    private Dictionary<SystemLanguage, Language> _languageDictionary 
+        = new Dictionary<SystemLanguage, Language>();
 
     public AlphabetFontMatrix AlphabetFontMatrix { get; private set; }
 
     public Language SelectedLanguage { get; private set; }
 
     public event Action<Language> OnLanguageChange;
-    private Language _defaultLanguage;
 
-    public int LanguageIndex;
+    private Language _defaultLanguage;
 
     private void Awake()
     {
         Instance = this;
-        _languages = new List<Language>(
-            Resources.LoadAll<Language>("Data/Localization/Languages"));
+        Language[] temp = new List<Language>(
+            Resources.LoadAll<Language>("Data/Localization/Languages")).ToArray();
+        Debug.Log(temp.Length);
+
+        foreach (Language lang in temp)
+        {
+            _languageDictionary.Add(lang.systemLanguageType,lang);
+        }
+
         AlphabetFontMatrix = Resources.Load<AlphabetFontMatrix>(
             "Data/Localization/AlphabetFontMatrix");
 
 
-
-
-
-        switch (Application.systemLanguage)
-        {
-            case SystemLanguage.Turkish:
-                _defaultLanguage = _languages[2];
-                LanguageIndex = 2;
-                break;
-            case SystemLanguage.Arabic:
-                _defaultLanguage = _languages[0];
-                LanguageIndex = 0;
-                break;
-            default:
-                _defaultLanguage = _languages[1];
-                LanguageIndex = 1;
-                break;
-        }
-
     }
 
-    public void ToggleLanguage()
+    public void ChangeLanguage()
     {
-        SelectedLanguage = _languages
-            [(_languages.IndexOf(SelectedLanguage) + 1) % _languages.Count];
-        OnLanguageChange.Invoke(SelectedLanguage);
-
-        LanguageIndex = ( _languages.IndexOf(SelectedLanguage) + 1 ) % _languages.Count;
+        //SelectedLanguage = _languages
+        //    [(_languages.IndexOf(SelectedLanguage) + 1) % _languages.Count];
+        //OnLanguageChange.Invoke(SelectedLanguage);
 
     }
 
@@ -73,5 +59,35 @@ public class LanguageManager : MonoBehaviour
     {
         return videoClip.GetVideoClip(Instance.SelectedLanguage);
     }
+
+    //public static Language GetCurrentLanguage()
+    //{
+    //    foreach (var VARIABLE in COLLECTION)
+    //    {
+            
+    //    }
+    //}
+
+    public static void SetCurrentLanguage(Language lang = null , SystemLanguage syslang = SystemLanguage.English)
+    {
+        if (lang == null && syslang==null)
+        {
+            Debug.Log("No language given to set ... Returning ..");
+            return;
+        }
+    }
+
+    //private Language ChooseLanguage(SystemLanguage syslanguage)
+    //{
+    //    foreach (Language lang in _languages)
+    //    {
+    //        if (lang.systemLanguageType== syslanguage)
+    //        {
+    //            return lang;
+    //        }
+    //    }
+
+    //    return _defaultLanguage;
+    //}
     
 }
