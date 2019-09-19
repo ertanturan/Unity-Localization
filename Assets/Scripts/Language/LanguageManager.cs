@@ -1,93 +1,95 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Video;
 
-public class LanguageManager : MonoBehaviour
+public static class LanguageManager
 {
 
-    public static LanguageManager Instance;
-
-    private Dictionary<SystemLanguage, Language> _languageDictionary 
+    private static Dictionary<SystemLanguage, Language> _languageDictionary
         = new Dictionary<SystemLanguage, Language>();
 
-    public AlphabetFontMatrix AlphabetFontMatrix { get; private set; }
+    public static AlphabetFontMatrix AlphabetFontMatrix { get; private set; }
 
-    public Language SelectedLanguage { get; private set; }
+    public static Language SelectedLanguage { get; private set; }
 
-    public event Action<Language> OnLanguageChange;
+    private static SystemLanguage SelectedSystemLanguage { get; set; }
 
-    private Language _defaultLanguage;
+    public static event Action<Language> OnLanguageChange;
 
-    private void Awake()
+    private static Language _defaultLanguage;
+
+
+    [RuntimeInitializeOnLoadMethod]
+    private static void OnLoad()
     {
-        Instance = this;
         Language[] temp = new List<Language>(
             Resources.LoadAll<Language>("Data/Localization/Languages")).ToArray();
-        Debug.Log(temp.Length);
 
         foreach (Language lang in temp)
         {
-            _languageDictionary.Add(lang.systemLanguageType,lang);
+            _languageDictionary.Add(lang.systemLanguageType, lang);
         }
 
         AlphabetFontMatrix = Resources.Load<AlphabetFontMatrix>(
             "Data/Localization/AlphabetFontMatrix");
 
-
+        SetDefaultLanguage(Application.systemLanguage);
     }
 
-    public void ChangeLanguage()
+    public static void ToggleLanguage()
     {
-        //SelectedLanguage = _languages
-        //    [(_languages.IndexOf(SelectedLanguage) + 1) % _languages.Count];
-        //OnLanguageChange.Invoke(SelectedLanguage);
+        for (int i = 0; i < _languageDictionary.Count; i++)
+        {
+            if (SelectedSystemLanguage == _languageDictionary.ElementAt(i).Key)
+            {
+                if (i != _languageDictionary.Count - 1)
+                {
+                    SetDefaultLanguage(_languageDictionary.ElementAt(i + 1).Key);
+                }
+                else
+                {
+                    SetDefaultLanguage(_languageDictionary.ElementAt(0).Key);
+                }
+                break;
+            }
+        }
 
+        OnLanguageChange.Invoke(_languageDictionary[SelectedSystemLanguage]);
     }
 
     public static string GetText(LanguageDependentText text, params object[] args)
     {
-        return string.Format(text.GetString(Instance.SelectedLanguage), args);
+        return string.Format(text.GetString(SelectedLanguage), args);
     }
 
     public static Sprite GetSprite(LanguageDependentSprite sprite)
     {
-        return sprite.GetSprite(Instance.SelectedLanguage);
+        return sprite.GetSprite(SelectedLanguage);
     }
 
     public static VideoClip GetVideoClip(LanguageDependentVideo videoClip)
     {
-        return videoClip.GetVideoClip(Instance.SelectedLanguage);
+        return videoClip.GetVideoClip(SelectedLanguage);
     }
 
-    //public static Language GetCurrentLanguage()
-    //{
-    //    foreach (var VARIABLE in COLLECTION)
-    //    {
-            
-    //    }
-    //}
-
-    public static void SetCurrentLanguage(Language lang = null , SystemLanguage syslang = SystemLanguage.English)
+    private static void SetDefaultLanguage(SystemLanguage lang)
     {
-        if (lang == null && syslang==null)
+        if (_languageDictionary.ContainsKey(lang))
         {
-            Debug.Log("No language given to set ... Returning ..");
-            return;
+            SelectedLanguage = _languageDictionary[lang];
+            _defaultLanguage = _languageDictionary[lang];
+            SelectedSystemLanguage = lang;
+        }
+        else
+        {
+            Debug.Log("Dictionary does not contain this language switching to English...");
+            SelectedLanguage = _languageDictionary[SystemLanguage.English];
+            _defaultLanguage = _languageDictionary[SystemLanguage.English];
+            SelectedSystemLanguage = SystemLanguage.English;
+
         }
     }
 
-    //private Language ChooseLanguage(SystemLanguage syslanguage)
-    //{
-    //    foreach (Language lang in _languages)
-    //    {
-    //        if (lang.systemLanguageType== syslanguage)
-    //        {
-    //            return lang;
-    //        }
-    //    }
-
-    //    return _defaultLanguage;
-    //}
-    
 }

@@ -40,7 +40,6 @@ public class LanguageDependentText : ScriptableObject
 
     public string GetString(Language language)
     {
-        Debug.Log(language);
         return Dictionary[language];
     }
 }

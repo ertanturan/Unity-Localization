@@ -34,7 +34,7 @@ public abstract class TextComponent : MonoBehaviour
         }
     }
 
-    protected virtual void Awake()
+    protected virtual void Start()
     {
     }
 

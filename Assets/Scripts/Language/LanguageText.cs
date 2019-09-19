@@ -8,13 +8,13 @@ public class LanguageText : TextComponent
     private TextAlignmentOptions _latinAlignment;
 
     [SerializeField]
-    private LanguageDependentText _multiLanguageText;
+    private LanguageDependentText _langDependentText;
 
     private bool _initialized;
 
-    protected override void Awake()
+    protected override void Start()
     {
-        base.Awake();
+        base.Start();
         Init();
     }
 
@@ -27,12 +27,12 @@ public class LanguageText : TextComponent
         {
             _latinAlignment = TextPro.alignment;
         }
-        if (_multiLanguageText != null)
-            SetText(LanguageManager.GetText(_multiLanguageText));
+        if (_langDependentText != null)
+            SetText(LanguageManager.GetText(_langDependentText));
 
-        LanguageManager.Instance.OnLanguageChange += (language) => {
-            if (this && gameObject && _multiLanguageText != null)
-                SetMultiLanguageText(_multiLanguageText);
+        LanguageManager.OnLanguageChange += (language) => {
+            if (this && gameObject && _langDependentText != null)
+                SetMultiLanguageText(_langDependentText);
         };
     }
 
@@ -40,10 +40,10 @@ public class LanguageText : TextComponent
     {
         Init();
         if(TextPro)
-            TextPro.alignment = GetAlignment(LanguageManager.Instance.SelectedLanguage.Alphabet);
-        _multiLanguageText = text;
-        if (_multiLanguageText != null)
-            SetText(LanguageManager.GetText(_multiLanguageText));
+            TextPro.alignment = GetAlignment(LanguageManager.SelectedLanguage.Alphabet);
+        _langDependentText = text;
+        if (_langDependentText != null)
+            SetText(LanguageManager.GetText(_langDependentText));
     }
 
     private TextAlignmentOptions GetAlignment(Alphabet alphabet)
