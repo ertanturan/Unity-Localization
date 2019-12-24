@@ -2,11 +2,14 @@
 
 This project serves as an internal localization system for unity-based projects including right-to-left (RTLL) writing support.
 
+## Import
+
+1. Go to [release](https://github.com/ertanturan/Unity-Localization/releases) page.
+2. Download the lates release of the package.
+3. Import it to your unity project.
+
 ## Installation
 
-1.Go to [release](https://github.com/ertanturan/Unity-Localization/releases) page.
-2.Download the lates release of the package.
-3.Import it to your unity project.
 
 ## Usage
 
