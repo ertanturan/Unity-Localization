@@ -30,7 +30,9 @@ This project serves as an internal localization system for unity-based projects 
 6. Set 'Lang Dependent Text' attribute on your 'Language text' (Which you have created on first step ) .
 7. Press play and you are done !
 
+## Demo Project
 
+Demo project can be found under 'Assets/Scenes' folder named ' SampleScene '
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
