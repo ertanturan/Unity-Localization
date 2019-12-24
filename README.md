@@ -1,11 +1,29 @@
-# Localization
+# Unity-Localization
 
-This repository contains a fully-functional language change system (localization system) . 
+This project serves as an internal localization system for unity-based projects including right-to-left (RTLL) writing support.
 
-Currently developed version of this system supports right to left (RTL - Arabic alignment ) and Left to right (LTR - Latin Alignment)  . 
+## Installation
 
-What type of items you can use  with this system ?
--Texts (RTL TMP PRO asset used ).
--Sprites
--Videoclips .
+1.Go to [release](https://github.com/ertanturan/Unity-Localization/releases) page
 
+```bash
+pip install foobar
+```
+
+## Usage
+
+```python
+import foobar
+
+foobar.pluralize('word') # returns 'words'
+foobar.pluralize('goose') # returns 'geese'
+foobar.singularize('phenomena') # returns 'phenomenon'
+```
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
