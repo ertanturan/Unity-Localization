@@ -13,12 +13,12 @@ This project serves as an internal localization system for unity-based projects 
 2. Under Localization Folder >> Create 3 Folders named 'AlphabetFontMatrix' , 'Alphabets' and 'Languages' if doesn't exits already.
 3. Under 'Alphabets' folder >> Right click >> Create >> Localization >> Alphabet (Create as many alphabets as you want).
 4. Set RTL or LTR writing orientation for your language (RTL : Right to left , LTR : Left to right) .
-5. Head to the 'Localization' folder (Assets/Resources/Data/Localization)
-6. Under 'AlphabetFontMatrix' >> Right click >> Create >> Localization >> AlphabetFontMatrix
-7. Set length according to your font variety . If you wish to use only 1 font for your whole project set length to 1 if more set it as you wish. 
+5. Under 'AlphabetFontMatrix' folder >> Right click >> Create >> Localization >> AlphabetFontMatrix
+6. Set length according to your font variety . If you wish to use only 1 font for your whole project set length to 1 if more set it as you wish. 
 (I'm assuming that you're using only one text font for your project.)
-8. Set Latin font attribute to a font value which compatible for RTLTmpro asset . (typeof : TMP_FontAsset )
-9. Set alphabet and its font in this matrix .
+7. Set Latin font attribute to a font value which compatible for RTLTmpro asset . (typeof : TMP_FontAsset )
+8. Set alphabet and its font in this matrix . (e.g. Latin Alphabet , MyriadPro-Regular SDF(TMP_FontAsset) ).
+9. Under 'Languages' folder >> Right Click >> Create >> Localization >> Language and set its Alphabet, Name , Icon and compatible system language text. (Repeat this step for as many language you would like to add in to your project.)
 
 ## Usage
 
