@@ -38,3 +38,6 @@ Demo project can be found under 'Assets/Scenes' folder named ' SampleScene '
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
+
+
+### ENJOY !
