@@ -9,10 +9,10 @@ This project serves as an internal localization system for unity-based projects 
 3. Import it to your unity project.
 
 ## Installation
----
+
 !! ATTENTION !! 
 The release package is installed and set for 3 languages : Turkish , English and Arabic . The installation process below is for the ones who would like to add more languages to their system .
----
+
 
 1. Create "Assets/Resources/Data/Localization" folder if doesn't exists already.
 2. Under Localization Folder >> Create 3 Folders named 'AlphabetFontMatrix' , 'Alphabets' and 'Languages' if doesn't exits already.
