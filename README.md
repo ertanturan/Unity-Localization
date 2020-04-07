@@ -1,6 +1,7 @@
 # Unity-Localization
 
-This project serves as an internal localization system for unity-based projects including right-to-left (RTLL) translation support.
+The tool is an internal localization system for unity-based projects with support of right-to-left (RTLL) translation. 
+
 
 ## Import
 
