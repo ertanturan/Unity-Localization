@@ -9,6 +9,11 @@ The tool is an internal localization system for unity-based projects with suppor
 2. Download the lates release of the package.
 3. Import it to your unity project.
 
+## Abbrevations
+
+LTR: Left To Right
+RTL : Right To Left
+
 ## Installation
 
 !! ATTENTION !! 
